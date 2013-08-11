@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title><%=@log_name%></title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+      $(function () {
+
+          var ws = ws_open("ws://localhost:4567/show/<%=@log_name%>");
+
+          function ws_open(addr) {
+
+              var s = new WebSocket(addr);
+              //$('#content').append("socket open.");
+              return s;
+          }
+
+          function ws_send() {
+          }
+
+
+          ws.onmessage = function (msg) {
+
+              $('#content').append(msg.data);
+          };
+
+
+      });
+
+  </script>
+
+
+</head>
+
+
+<body>
+<div id="content_container">
+
+  <p>
+  <pre id="content"></pre>
+  </p>
+
+</div>
+</body>
+
+</html>
